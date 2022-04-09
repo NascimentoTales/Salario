@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body{
+            background-color: rgb(100, 87, 87);
+            color: beige;
+        }
+        #container{
+            display: flex;
+            flex-direction: column;
+            width: 90%;
+            margin: 30px auto;
+            max-width: 500px;
+            align-items: center;
+            
+        }
+        label{
+            margin-bottom: 10px; 
+            font-size: 1.rem;   
+        }
+        input{
+            margin-bottom: 30px;
+            text-align: center;
+            padding: 10px 0;
+            border: 1px solid gray;
+        }
+        button{
+            /* margin-top: 20px; */
+            margin: 10px auto;
+            width: 150px;
+            padding: 10px 0;
+            text-transform: uppercase;
+        }
+        p{
+            text-align: left;
+
+        }
+
+    </style>
+    <title>Salário</title>
+</head>
+<body>
+    <div id="container">
+        <h1>Calcular Salário</h1>
+        <label for="">Informe o valor do salário do funcionário:</label>
+        <input type="number" placeholder="Ex: 2500.75" id="salarioFuncionario">
+        <label for="">Informe o valor do salário mínimo atual:</label>
+        <input type="number" name="" placeholder="Ex: 930.50" id="salMinimo">
+        <button onclick="calcular()">Calcular</button>
+    </div>
+    <script>
+
+        function calcular() {
+
+            let salFuncionario = document.getElementById("salarioFuncionario").value;
+            let salMinimo = document.getElementById("salMinimo").value;
+            let format = salFuncionario / salMinimo;
+            let results = parseInt(format).toFixed(0);
+
+            const container = document.getElementById("container")
+            let p = document.createElement("p");
+
+            if (salFuncionario === '' || salMinimo === '') {
+                alert("Perencha os campos corretamente")
+            } else {
+
+                p.innerHTML = "Calculando..."
+                setTimeout(() => {
+                    if (format === 1) {
+                    p.innerHTML = `O resultado de R$:${salFuncionario} (Salario do Funcionário),<br> dividido por R$:${salMinimo} (Salário Mínimo) é: ${results} <br><br> Logo o Funcionário recebe o equivalente a ${results} (Salário Mínimo)`
+                    // container.appendChild(p)
+            
+                    }else{
+                        p.innerHTML = `O resultado de R$:${salFuncionario} (Salario do Funcionário),<br> dividido por R$:${salMinimo} (Salário Mínimo) é: ${results} <br><br> Logo o Funcionário recebe o equivalente a ${results} (Salários Mínimos)`
+                        // container.appendChild(p)
+                    } 
+                }, 2000);
+            }
+            container.appendChild(p)
+              
+        }
+    </script>
+</body>
+</html>
